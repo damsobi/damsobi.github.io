@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kado Spesial Exshalynda 🌸</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&family=Fredoka+One&display=swap"
+        rel="stylesheet">
+    <style>
+        /* === TEMA PASTEL & CUTE MODERN === */
+        :root {
+            --pink-soft: #ffb3c6;
+            --pink-dark: #ff477e;
+            --blue-soft: #a2d2ff;
+            --bg-grad-1: #ffd1dc;
+            --bg-grad-2: #e0c3fc;
+            --text-main: #5c4b51;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-main);
+            overflow: hidden;
+            touch-action: manipulation;
+            background: linear-gradient(-45deg, var(--bg-grad-1), var(--bg-grad-2), #ffdfd3, #c8e7ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* === BACKGROUND MENGGEMASKAN === */
+        #floating-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .float-item {
+            position: absolute;
+            bottom: -10%;
+            font-size: 2rem;
+            opacity: 0.5;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* === WADAH SCENE & GLASSMORPHISM === */
+        .scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .scene.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 85%;
+            max-width: 400px;
+        }
+
+        .game-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--pink-dark);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        /* === GAME 1: KUIS === */
+        .quiz-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 12px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: white;
+            color: var(--text-main);
+            border: 2px solid var(--pink-soft);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .quiz-btn:active {
+            transform: scale(0.95);
+            background: var(--pink-soft);
+            color: white;
+        }
+
+        /* === GAME 2: PINGUIN === */
+        .dialog-bubble {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+            animation: bounceBubble 2s infinite;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .dialog-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+
+        @keyframes bounceBubble {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .penguin {
+            position: relative;
+            width: 140px;
+            height: 150px;
+            margin-bottom: 40px;
+            animation: waddle 1.5s infinite;
+        }
+
+        .penguin-body {
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 95%;
+            background: #2c3e50;
+            border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+            box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .penguin-belly {
+            position: absolute;
+            bottom: 5%;
+            left: 15%;
+            width: 70%;
+            height: 75%;
+            background: #ffffff;
+            border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+        }
+
+        .penguin-eye {
+            position: absolute;
+            top: 28%;
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .penguin-eye.left {
+            left: 30%;
+        }
+
+        .penguin-eye.right {
+            right: 30%;
+        }
+
+        .penguin-beak {
+            position: absolute;
+            top: 38%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 14px;
+            background: #ffb703;
+            border-radius: 50%;
+        }
+
+        .penguin-blush {
+            position: absolute;
+            top: 35%;
+            width: 16px;
+            height: 8px;
+            background: #ff99cc;
+            border-radius: 50%;
+            opacity: 0.7;
+            filter: blur(1px);
+        }
+
+        .penguin-blush.left {
+            left: 15%;
+        }
+
+        .penguin-blush.right {
+            right: 15%;
+        }
+
+        .penguin-foot {
+            position: absolute;
+            bottom: -5px;
+            width: 35px;
+            height: 15px;
+            background: #ffb703;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .penguin-foot.left {
+            left: 10%;
+        }
+
+        .penguin-foot.right {
+            right: 10%;
+        }
+
+        .penguin-heart {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 38px;
+            color: var(--pink-dark);
+            animation: heartbeat 1s infinite;
+            z-index: 5;
+            text-shadow: 0 5px 10px rgba(255, 71, 126, 0.4);
+        }
+
+        @keyframes waddle {
+
+            0%,
+            100% {
+                transform: rotate(-3deg);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+        }
+
+        #catch-btn {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+            background: var(--pink-dark);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 71, 126, 0.4);
+            transition: top 0.3s ease, left 0.3s ease;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        /* === GAME 3: BALON CINTA === */
+        #balloon-area {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px dashed var(--pink-soft);
+            margin-top: 15px;
+        }
+
+        .game-balloon {
+            position: absolute;
+            bottom: -20%;
+            font-size: 3.5rem;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.1s;
+            animation: floatUpBalloon linear infinite;
+        }
+
+        .game-balloon:active {
+            transform: scale(0.8);
+        }
+
+        @keyframes floatUpBalloon {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-70vh);
+            }
+        }
+
+        #score-board {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--pink-dark);
+            margin-top: 10px;
+        }
+
+        /* === SCENE KUE === */
+        .instruction {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .cake-wrapper {
+            position: relative;
+            width: 220px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .flame {
+            width: 18px;
+            height: 30px;
+            background: #ffb703;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 15px #ffb703, 0 0 30px #fb8500;
+            animation: flicker 0.4s infinite alternate;
+            cursor: pointer;
+            margin-bottom: -5px;
+            z-index: 10;
+        }
+
+        .candle {
+            width: 20px;
+            height: 60px;
+            background: repeating-linear-gradient(45deg, #fff, #fff 10px, var(--blue-soft) 10px, var(--blue-soft) 20px);
+            border-radius: 5px;
+            margin-bottom: -10px;
+            z-index: 5;
+        }
+
+        .drip {
+            width: 200px;
+            height: 40px;
+            background: #fff;
+            border-radius: 20px 20px 30px 30px;
+            z-index: 4;
+            margin-bottom: -30px;
+        }
+
+        .tier {
+            width: 200px;
+            height: 80px;
+            background: var(--pink-soft);
+            border-radius: 20px;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .plate {
+            width: 240px;
+            height: 25px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            margin-top: -10px;
+        }
+
+        .cake-face {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            top: 35px;
+        }
+
+        .cake-eye {
+            width: 8px;
+            height: 8px;
+            background: var(--pink-dark);
+            border-radius: 50%;
+            margin: 0 15px;
+        }
+
+        .cake-smile {
+            width: 30px;
+            height: 12px;
+            border-bottom: 4px solid var(--pink-dark);
+            border-radius: 0 0 50px 50px;
+            position: absolute;
+            top: -5px;
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: scale(1) rotate(-2deg);
+            }
+
+            100% {
+                transform: scale(1.1) rotate(2deg);
+            }
+        }
+
+        /* === SCENE CONFETTI === */
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #fw-text {
+            position: absolute;
+            z-index: 31;
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            text-align: center;
+            color: var(--pink-dark);
+            text-shadow: 3px 3px 0px #fff;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 1s ease-out;
+            width: 100%;
+        }
+
+        /* === SCENE SLIDESHOW TEKS === */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--pink-dark);
+            border-radius: 10px;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .big-emoji {
+            font-size: 5rem;
+            margin-bottom: 15px;
+            animation: floatEmoji 3s ease-in-out infinite;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes floatEmoji {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .slide h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            color: var(--pink-dark);
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+
+        .slide p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* === GAME 4: MINI GAME TAP HATI === */
+        .love-meter-box {
+            width: 100%;
+            height: 25px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            border: 3px solid white;
+            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        #love-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink-soft), var(--pink-dark));
+            transition: width 0.1s linear;
+        }
+
+        #tap-btn {
+            font-size: 5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            animation: heartbeat 0.8s infinite;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #tap-btn:active {
+            transform: scale(0.85) !important;
+            animation: none;
+        }
+
+        /* === GAME 5: GACHA KADO AKHIR === */
+        .gacha-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .gift-box {
+            font-size: 4rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: shake 2s infinite;
+        }
+
+        .gift-box:active {
+            transform: scale(0.8);
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-10deg);
+            }
+
+            75% {
+                transform: rotate(10deg);
+            }
+        }
+
+        #voucher-result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--pink-dark);
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px dashed var(--pink-dark);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="floating-bg"></div>
+
+    <div id="quiz-scene" class="scene active">
+        <div class="glass-box">
+            <h2 class="game-title" id="quiz-text">Cek Dulu! Hayo, ini beneran Exshalynda bukan?</h2>
+            <div id="quiz-buttons"></div>
+        </div>
+    </div>
+
+    <div id="intro-scene" class="scene">
+        <div class="dialog-bubble" id="dialog">Cerdas! Sekarang coba pencet tombol di bawah kalo bisa 😝</div>
+        <div class="penguin">
+            <div class="penguin-foot left"></div>
+            <div class="penguin-foot right"></div>
+            <div class="penguin-body"></div>
+            <div class="penguin-belly"></div>
+            <div class="penguin-eye left"></div>
+            <div class="penguin-eye right"></div>
+            <div class="penguin-blush left"></div>
+            <div class="penguin-blush right"></div>
+            <div class="penguin-beak"></div>
+            <div class="penguin-heart">❤️</div>
+        </div>
+        <button id="catch-btn">Buka Kado 🎁</button>
+    </div>
+
+    <div id="balloon-scene" class="scene">
+        <div class="glass-box" style="width: 90%; height: 80vh;">
+            <h2 class="game-title" style="font-size: 1.2rem;">Kuenya kekunci! Pecahkan 5 balon untuk ngebuka! 🎈</h2>
+            <div id="score-board">Skor: <span id="pop-score">0</span> / 5</div>
+            <div id="balloon-area"></div>
+        </div>
+    </div>
+
+    <div id="cake-scene" class="scene">
+        <h2 class="instruction">Akhirnya kebuka!<br>Make a wish dulu ✨<br>Terus tiup lilinnya (Pencet Apinya!) 🌬️</h2>
+        <div class="cake-wrapper">
+            <div class="flame" id="flame" style="padding: 25px; margin-top: -25px;" onclick="blowCandle()"></div>
+            <div class="candle"></div>
+            <div class="drip"></div>
+            <div class="tier">
+                <div class="cake-face">
+                    <div class="cake-eye"></div>
+                    <div class="cake-smile"></div>
+                    <div class="cake-eye"></div>
+                </div>
+            </div>
+            <div class="plate"></div>
+        </div>
+    </div>
+
+    <div id="fireworks-scene" class="scene">
+        <canvas id="confetti-canvas"></canvas>
+        <div id="fw-text">Happy Birthday<br>Sayang! 🎉</div>
+    </div>
+
+    <div id="slideshow-scene" class="scene">
+        <div class="glass-box" style="height: 65vh; padding: 30px; display: flex; flex-direction: column;">
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div class="slide-container" id="slide-wrapper">
+
+                <div class="slide" id="slide-0">
+                    <div class="big-emoji">🎂</div>
+                    <h2>Hello, 25!</h2>
+                    <p>Selamat ulang tahun yang ke-25, Exshalynda Wahyuni Febrianti. Hari ini dunia merayakan lahirnya
+                        perempuan paling spesial di hidupku.</p>
+                </div>
+
+                <div class="slide" id="slide-1">
+                    <div class="big-emoji">🌸</div>
+                    <h2>Awal Cerita Kita</h2>
+                    <p>Kalau diingat waktu pertama kali kita ketemu, aku nggak pernah menyangka kalau kamu akan jadi
+                        alasan senyumku setiap hari.</p>
+                </div>
+
+                <div class="slide" id="slide-2">
+                    <div class="big-emoji">✨</div>
+                    <h2>Lebih Dari Pacar</h2>
+                    <p>Kamu itu bukan cuma pacar buat aku. Kamu tempat pulangnya aku, partner ngobrol paling asyik, dan
+                        teman berantem paling gemesin.</p>
+                </div>
+
+                <div class="slide" id="slide-3">
+                    <div class="big-emoji">💖</div>
+                    <h2>Semua Tentang Kamu</h2>
+                    <p>Aku suka caramu tertawa, ceritamu yang panjang lebar, bahkan... aku juga sayang sama sisi bawel
+                        dan keras kepalamu itu.</p>
+                </div>
+
+                <div class="slide" id="slide-4">
+                    <div class="big-emoji">💌</div>
+                    <h2>Terima Kasih Ya</h2>
+                    <p>Terima kasih udah mau bertahan sama aku. Selalu sabar, ngertiin, dan ngasih warna yang nggak
+                        pernah pudar di hidupku.</p>
+                </div>
+
+                <div class="slide" id="slide-5">
+                    <div class="big-emoji">🦋</div>
+                    <h2>Babak Baru</h2>
+                    <p>Di usia 25 tahun ini, perjalanannya mungkin nggak selalu mulus. Tapi percayalah, kamu nggak akan
+                        pernah berjalan sendirian.</p>
+                </div>
+
+                <div class="slide" id="slide-6">
+                    <div class="big-emoji">🌟</div>
+                    <h2>Doaku Untukmu</h2>
+                    <p>Semoga sehat selalu, dimudahkan urusannya, dan bahagia terus. Tetap jadi Exshalynda yang aku
+                        kenal ya!</p>
+                </div>
+
+                <div class="slide" id="slide-7">
+                    <div class="big-emoji" style="font-size: 6rem; animation: heartbeat 1s infinite;">♾️</div>
+                    <h2 style="font-size: 2.8rem; font-family: 'Pacifico', cursive;">I Love You</h2>
+                    <p>Mari kita ciptakan ribuan kenangan manis lainnya bersama-sama. Aku sayang banget sama kamu!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="minigame-scene" class="scene">
+        <div class="glass-box">
+            <h2 class="game-title" style="font-size: 1.8rem;">Eits, Tunggu Dulu! 🛑</h2>
+            <p style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px; line-height: 1.4;"
+                id="game-text">
+                Sebelum baca kelanjutannya, buktiin dulu seberapa besar sayangmu! <br><br><b>Spam Tap (Pencet) Hati di
+                    bawah secepat mungkin!</b> Kalau lambat, bar-nya turun lagi loh! 🏃‍♀️💨
+            </p>
+            <div class="love-meter-box">
+                <div id="love-fill"></div>
+            </div>
+            <button id="tap-btn" onclick="tapLove()">❤️</button>
+        </div>
+    </div>
+
+    <div id="gacha-scene" class="scene">
+        <div class="glass-box">
+            <h2 class="game-title">Kejutan Terakhir! 🎉</h2>
+            <p style="font-size: 1.1rem; font-weight: 600;">Pilih satu kotak di bawah ini untuk mengklaim <b>Hadiah
+                    Ulang Tahun Aslimu</b> dariku!</p>
+
+            <div class="gacha-container" id="gacha-boxes">
+                <div class="gift-box" onclick="openGacha(this)">🎁</div>
+                <div class="gift-box" onclick="openGacha(this)">🎁</div>
+                <div class="gift-box" onclick="openGacha(this)">🎁</div>
+            </div>
+
+            <div id="voucher-result"></div>
+        </div>
+    </div>
+
+    <script>
+        // === GENERATOR BACKGROUND ===
+        const bgContainer = document.getElementById('floating-bg');
+        const emojis = ['🌸', '✨', '☁️', '💖', '🎈', '🦋', '🎀'];
+        for (let i = 0; i < 25; i++) {
+            let el = document.createElement('div'); el.className = 'float-item';
+            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            el.style.animationDelay = (Math.random() * 10) + 's';
+            el.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            bgContainer.appendChild(el);
+        }
+
+        // === 1. KUIS KEAMANAN ===
+        const quizData = [
+            { q: "Cek Keamanan! Hayo, ini beneran Exshalynda bukan?", ans: [{ t: "Iya beneran aku! 🙋‍♀️", c: true }, { t: "Bukan, aku Davina Karamoy 💅", c: false }], err: "Hilih, ngaku-ngaku Davina Karamoy! Ulangi pencet yang bener!" },
+            { q: "Coba tebak, hari ini tanggal berapa?", ans: [{ t: "Tanggal tua 🥺", c: false }, { t: "28 Februari dong! 🎉", c: true }], err: "Masa hari spesial gini dibilang tanggal tua doang?! Coba lagi!" },
+            { q: "Sekarang ulang tahun yang ke berapa hayo?", ans: [{ t: "25 Tahun 🎂", c: true }, { t: "Masih 17 tahun kok 😌", c: false }], err: "Ngarep banget balik 17 tahun! 😝 Terima kenyataan dong!" }
+        ];
+
+        let currentQ = 0; const qText = document.getElementById('quiz-text'); const qBtns = document.getElementById('quiz-buttons');
+
+        function loadQuiz() {
+            if (currentQ >= quizData.length) {
+                document.getElementById('quiz-scene').classList.remove('active');
+                document.getElementById('intro-scene').classList.add('active'); return;
+            }
+            const data = quizData[currentQ]; qText.innerText = data.q; qBtns.innerHTML = '';
+            let answers = data.ans.sort(() => Math.random() - 0.5);
+            answers.forEach(a => {
+                let btn = document.createElement('button'); btn.className = 'quiz-btn'; btn.innerText = a.t;
+                btn.onclick = () => { if (a.c) { currentQ++; loadQuiz(); } else { alert(data.err); } };
+                qBtns.appendChild(btn);
+            });
+        }
+        loadQuiz();
+
+        // === 2. TOMBOL LARI PINGUIN ===
+        const catchBtn = document.getElementById('catch-btn'); const dialog = document.getElementById('dialog'); let tapCount = 0;
+        catchBtn.addEventListener('touchstart', moveBtn, { passive: false }); catchBtn.addEventListener('mouseover', moveBtn);
+
+        function moveBtn(e) {
+            if (tapCount < 4) {
+                if (e.type === 'touchstart') e.preventDefault();
+                const newX = Math.random() * 60 + 20; const newY = Math.random() * 60 + 20;
+                catchBtn.style.left = newX + '%'; catchBtn.style.top = newY + '%';
+
+                if (tapCount === 0) dialog.innerText = "Wleee meleset! Lambat banget sih 🏃‍♀️💨";
+                if (tapCount === 1) dialog.innerText = "Ayo kejar aku! Geser dikit dong 😝";
+                if (tapCount === 2) dialog.innerText = "Yaaah gak kena lagi! Kasian deh 🙈";
+                if (tapCount === 3) dialog.innerText = "Oke oke, kasian mukanya cemberut. Klik beneran nih 👇";
+                tapCount++;
+            } else if (tapCount === 4) {
+                catchBtn.style.left = '50%'; catchBtn.style.top = '75%';
+                catchBtn.removeEventListener('touchstart', moveBtn); catchBtn.removeEventListener('mouseover', moveBtn);
+                catchBtn.addEventListener('click', startBalloonGame); catchBtn.addEventListener('touchstart', startBalloonGame);
+            }
+        }
+
+        // === 3. GAME BALON CINTA & MUSIK LOKAL ===
+        let balloonInterval; let poppedBalloons = 0;
+
+        function startBalloonGame() {
+            // Mainkan musik lokal dari file musik.mp3
+            let audioPlayer = document.getElementById('bg-music');
+            audioPlayer.play().catch(e => alert("Gagal memutar audio! Pastikan file 'musik.mp3' ada di dalam folder yang sama ya!"));
+
+            document.getElementById('intro-scene').classList.remove('active');
+            document.getElementById('balloon-scene').classList.add('active');
+
+            const area = document.getElementById('balloon-area');
+            const emojis = ['🎈', '💖', '🎁', '🎀'];
+
+            balloonInterval = setInterval(() => {
+                let b = document.createElement('div');
+                b.className = 'game-balloon';
+                b.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                b.style.left = Math.random() * 80 + 10 + '%';
+                b.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+                b.onclick = function () {
+                    this.innerText = '💥';
+                    this.style.pointerEvents = 'none';
+                    poppedBalloons++;
+                    document.getElementById('pop-score').innerText = poppedBalloons;
+
+                    setTimeout(() => this.remove(), 200);
+
+                    if (poppedBalloons >= 5) {
+                        clearInterval(balloonInterval);
+                        setTimeout(startCakeScene, 500);
+                    }
+                };
+
+                area.appendChild(b);
+                setTimeout(() => { if (b.parentNode) b.remove(); }, 4000);
+            }, 600);
+        }
+
+        // === 4. TIUP LILIN & CONFETTI ===
+        function startCakeScene() {
+            document.getElementById('balloon-scene').classList.remove('active');
+            document.getElementById('cake-scene').classList.add('active');
+        }
+
+        function blowCandle() {
+            document.getElementById('flame').style.display = 'none';
+            document.getElementById('cake-scene').classList.remove('active');
+            setTimeout(startFireworks, 800);
+        }
+
+        function startFireworks() {
+            const fwScene = document.getElementById('fireworks-scene'); fwScene.classList.add('active');
+            initConfetti();
+            setTimeout(() => { document.getElementById('fw-text').style.opacity = '1'; document.getElementById('fw-text').style.transform = 'scale(1) rotate(-5deg)'; }, 500);
+            setTimeout(() => { fwScene.classList.remove('active'); setTimeout(startSlideshowPart1, 800); }, 5000);
+        }
+
+        function initConfetti() {
+            const canvas = document.getElementById("confetti-canvas"); const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            let particles = []; const colors = ['#ff477e', '#ffb3c6', '#a2d2ff', '#ffb703', '#ffffff'];
+            for (let i = 0; i < 150; i++) { particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height - canvas.height, w: Math.random() * 10 + 5, h: Math.random() * 10 + 5, vx: Math.random() * 2 - 1, vy: Math.random() * 3 + 2, color: colors[Math.floor(Math.random() * colors.length)], rot: Math.random() * 360, rotSpeed: Math.random() * 5 - 2.5 }); }
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    let p = particles[i]; ctx.save(); ctx.translate(p.x + p.w / 2, p.y + p.h / 2); ctx.rotate(p.rot * Math.PI / 180); ctx.fillStyle = p.color; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore(); p.x += p.vx; p.y += p.vy; p.rot += p.rotSpeed; if (p.y > canvas.height) { p.y = -p.h; p.x = Math.random() * canvas.width; }
+                } requestAnimationFrame(draw);
+            } draw();
+        }
+
+        // === 5. SLIDESHOW & MINIGAME TAP HATI ===
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideDuration = 8000;
+
+        function startSlideshowPart1() {
+            document.getElementById('slideshow-scene').classList.add('active');
+            runSlide();
+        }
+
+        function runSlide() {
+            slides.forEach(s => s.classList.remove('active'));
+            document.getElementById('progress-bar').style.transition = 'none'; document.getElementById('progress-bar').style.width = '0%';
+
+            setTimeout(() => {
+                slides[currentSlideIndex].classList.add('active');
+                document.getElementById('progress-bar').style.transition = `width ${slideDuration}ms linear`;
+                document.getElementById('progress-bar').style.width = '100%';
+                currentSlideIndex++;
+
+                if (currentSlideIndex === 4) {
+                    setTimeout(() => {
+                        document.getElementById('slideshow-scene').classList.remove('active');
+                        setTimeout(startTapGame, 800);
+                    }, slideDuration);
+                } else if (currentSlideIndex === slides.length) {
+                    setTimeout(() => {
+                        document.getElementById('slideshow-scene').classList.remove('active');
+                        setTimeout(() => document.getElementById('gacha-scene').classList.add('active'), 800);
+                    }, slideDuration);
+                } else {
+                    setTimeout(runSlide, slideDuration);
+                }
+            }, 100);
+        }
+
+        // === GAME 4: SPAM TAP HATI ===
+        let loveScore = 0; let drainInterval;
+
+        function startTapGame() {
+            document.getElementById('minigame-scene').classList.add('active');
+            loveScore = 0; updateLoveBar();
+
+            drainInterval = setInterval(() => {
+                if (loveScore > 0) loveScore -= 2;
+                updateLoveBar();
+            }, 100);
+        }
+
+        function tapLove() {
+            loveScore += 10;
+            if (loveScore >= 100) {
+                loveScore = 100; clearInterval(drainInterval);
+                document.getElementById('tap-btn').disabled = true;
+                document.getElementById('game-text').innerHTML = "<span style='color:var(--pink-dark); font-size:1.5rem;'>YEEEAY! Sayang 100%! 💖</span><br><br>Sip, boleh lanjut baca ceritanya...";
+
+                setTimeout(() => {
+                    document.getElementById('minigame-scene').classList.remove('active');
+                    setTimeout(() => { document.getElementById('slideshow-scene').classList.add('active'); runSlide(); }, 800);
+                }, 2500);
+            }
+            updateLoveBar();
+        }
+
+        function updateLoveBar() { document.getElementById('love-fill').style.width = loveScore + '%'; }
+
+        // === GAME 5: GACHA KADO ===
+        let hadiah = [
+            "🎫 Voucher Traktir Makan Bebas Pilih Menu! 🍜",
+            "🎫 Voucher Nonton Bioskop Film Apa Aja! 🍿",
+            "🎫 Voucher Peluk Sepuasnya + Turutin 1 Permintaan! 🫂"
+        ];
+
+        hadiah = hadiah.sort(() => Math.random() - 0.5);
+        let opened = false;
+
+        function openGacha(boxElement) {
+            if (opened) return;
+            opened = true;
+
+            boxElement.style.transform = "scale(1.2)";
+            boxElement.innerText = "✨";
+
+            let allBoxes = document.querySelectorAll('.gift-box');
+            allBoxes.forEach(b => { if (b !== boxElement) b.style.opacity = '0'; });
+
+            setTimeout(() => {
+                document.getElementById('voucher-result').innerText = "Kamu mendapatkan:\n\n" + hadiah[0] + "\n\n(SS bukti ini dan tagih aku sekarang! 😆)";
+                document.getElementById('voucher-result').style.display = 'block';
+            }, 1000);
+        }
+
+    </script>
+</body>
+
+</html>
